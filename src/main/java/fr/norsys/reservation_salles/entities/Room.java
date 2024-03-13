@@ -23,8 +23,8 @@ public class Room {
     @NotNull(message = "Invalid roomId: Name is NULL")
     @Size(min = 3, max = 30, message = "Invalid roomId: Must be of 3 - 30 characters")
     private String roomId;
-    @Min(value = 10, message = "Capacity must be at least 10")
-    @Max(value = 20, message = "Capacity cannot exceed 20")
+    @Min(value = 1, message = "Capacity must be at least 1")
+    @Max(value = 5, message = "Capacity cannot exceed 5")
     private int capacity;
 
 }

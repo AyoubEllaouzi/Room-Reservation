@@ -1,8 +1,10 @@
 package fr.norsys.reservation_salles.services.impl;
 
 import fr.norsys.reservation_salles.entities.Reservation;
+import fr.norsys.reservation_salles.entities.Room;
 import fr.norsys.reservation_salles.exceptions.ResourceNotFoundException;
 import fr.norsys.reservation_salles.repositories.ReservationRepository;
+import fr.norsys.reservation_salles.repositories.RoomRepository;
 import fr.norsys.reservation_salles.services.IReservationService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -15,9 +17,15 @@ import java.util.List;
 @Transactional
 public class ReservationService implements IReservationService {
     private ReservationRepository reservationRepository;
+    private RoomRepository roomRepository;
 
     @Override
     public void reserveRoom(Reservation reservation) {
+        Room room = roomRepository.findById(reservation.getRoom().getId())
+                .orElseThrow(() -> new ResourceNotFoundException("room id : "+reservation.getRoom().getId()));
+        room.setCapacity(room.getCapacity()-1);
+        if (room.getCapacity()<=1)
+            throw new ResourceNotFoundException("you can't reserve :( ");
         reservationRepository.save(reservation);
     }
 
