@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/rooms")
+@CrossOrigin(origins = "http://localhost:5173")
 @Validated
 public class RoomController {
     private RoomService roomService;

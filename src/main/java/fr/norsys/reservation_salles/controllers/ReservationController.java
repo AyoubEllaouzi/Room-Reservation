@@ -17,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/api/reservations")
 @Validated
+@CrossOrigin(origins = "http://localhost:5173")
 public class ReservationController {
     private ReservationService reservationService;
 

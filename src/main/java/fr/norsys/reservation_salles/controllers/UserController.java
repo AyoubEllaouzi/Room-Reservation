@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/api/users")
 @Validated
+@CrossOrigin(origins = "http://localhost:5173")
 public class UserController {
     private UserService userService;
 
